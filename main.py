@@ -34,7 +34,7 @@ with tab1:
     except:
         st.text('Please select 2 variables')
     c = correlation(data)
-    st.plotly_chart(c)
+    st.dataframe(c)
 
 with tab2:
     sum = summarize(data,summary)
