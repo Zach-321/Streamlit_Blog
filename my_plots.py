@@ -7,6 +7,8 @@ import pandas as pd
 
 
 def scatter(df, options):
+    if options is None:
+        return 'Please select 2 variables'
     if len(options)!=2:
         return 'Please  select 2 variables'
     fig = px.scatter(df,x=options[0],y=options[1])
