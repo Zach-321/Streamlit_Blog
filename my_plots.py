@@ -9,10 +9,8 @@ import numpy as np
 
 
 def pairs(df, options):
-    # if options is None:
-    #     return 'Please select 2 variables'
-    # if len(options)!=2:
-    #     return 'Please  select 2 variables'
+    if options is None:
+        return None
     fig = sns.pairplot(df[options])
     #fig = px.scatter(df,x=options[0],y=options[1])
     return fig
