@@ -28,11 +28,10 @@ with st.sidebar:
 
 tab1, tab2 = st.tabs(['Plots', 'Summaries'])
 with tab1:
-    graph = pairs(data,options)
+    
     try:
-        #fig, ax = plt.subplots()
-
-        st.pyplot(graph)
+        fig = sns.pairplot(data[options])
+        st.pyplot(fig)
     except:
         st.text('Please select at least 1 variable')
     fig, ax = plt.subplots()
