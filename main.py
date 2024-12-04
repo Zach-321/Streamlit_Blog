@@ -26,13 +26,13 @@ with st.sidebar:
     year_input =st.slider('Year', 1880, 2023, value = 2003)
     summary = st.radio('Choose a Summary Statistic', ['mean','median', 'max', 'min'])
 
-tab1, tab2 = st.tabs(['Scatter', 'Summaries'])
+tab1, tab2 = st.tabs(['Plots', 'Summaries'])
 with tab1:
-    comp = scatter(data,options)
+    comp = pairs(data,options)
     try:
         st.plotly_chart(comp)
     except:
-        st.text('Please select 2 variables')
+        st.text('Please select at least 2 variables')
     fig, ax = plt.subplots()
     correlation(data, ax)
     st.pyplot(fig)

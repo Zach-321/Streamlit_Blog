@@ -8,12 +8,13 @@ import numpy as np
 
 
 
-def scatter(df, options):
+def pairs(df, options):
     if options is None:
         return 'Please select 2 variables'
     if len(options)!=2:
         return 'Please  select 2 variables'
-    fig = px.scatter(df,x=options[0],y=options[1])
+    fig = sns.pairplot(df[options])
+    #fig = px.scatter(df,x=options[0],y=options[1])
     return fig
 
 
