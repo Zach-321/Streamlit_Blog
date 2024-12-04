@@ -16,15 +16,16 @@ def scatter(df, options):
 
 
 def summarize(df, stat):
+    result = df.melt(id_vars=['Date'], var_name='Variable', value_name='Value')
     vars = df.drop('Date', axis=1)
     if stat == 'mean':
         return vars.mean()
     elif stat == 'median':
         return vars.median()
     elif stat == 'max':
-        return vars.max()
+        return result.loc[result.groupby('Variable')['Value'].idxmax()]
     elif stat == 'min':
-        return vars.min()
+        return result.loc[result.groupby('Variable')['Value'].idxmin()]
 
 def top_names_plot(df, year=2000, n=10, width=800, height=600, variable='count'):
     color_map = {"M": "lightblue", "F": "hotpink"}
