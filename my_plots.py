@@ -3,6 +3,8 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import matplotlib.pyplot as plt
 import pandas as pd
+import seaborn as sns
+import numpy as np
 
 
 
@@ -26,6 +28,15 @@ def summarize(df, stat):
         return result.loc[result.groupby('Variable')['Value'].idxmax()]
     elif stat == 'min':
         return result.loc[result.groupby('Variable')['Value'].idxmin()]
+
+def correlation(df):
+    edit = df.drop('Date', axis=1)
+    corr = edit.corr()
+    matrix = np.triu(corr)
+    cmap = sns.diverging_palette(100, 7, s=75, l=40,
+                            n=5, center="light", as_cmap=True)
+    sns.heatmap(corr, mask=matrix, center=0, annot=True,
+            fmt='.2f', square=True, cmap=cmap)
 
 def top_names_plot(df, year=2000, n=10, width=800, height=600, variable='count'):
     color_map = {"M": "lightblue", "F": "hotpink"}

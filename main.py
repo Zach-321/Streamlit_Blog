@@ -8,6 +8,7 @@ from io import BytesIO
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from my_plots import *
+import seaborn as sns
 import streamlit as st
 
 @st.cache_data
@@ -32,6 +33,8 @@ with tab1:
         st.plotly_chart(comp)
     except:
         st.text('Please select 2 variables')
+    c = correlation(data)
+    st.plotly_chart(c)
 
 with tab2:
     sum = summarize(data,summary)
