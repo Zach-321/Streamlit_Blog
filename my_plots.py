@@ -8,10 +8,10 @@ import numpy as np
 
 
 
-def pairs(df, options, ax):
+def pairs(df, options):
     if len(options) == 0:
         return None
-    fig = sns.pairplot(df[options], ax = ax)
+    fig = sns.pairplot(df[options])
     #fig = px.scatter(df,x=options[0],y=options[1])
     return fig
 
