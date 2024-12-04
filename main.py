@@ -33,8 +33,9 @@ with tab1:
         st.plotly_chart(comp)
     except:
         st.text('Please select 2 variables')
-    c = correlation(data)
-    st.pyplot(c)
+    fig, ax = plt.subplots()
+    correlation(data, ax)
+    st.pyplot(fig)
 
 with tab2:
     sum = summarize(data,summary)
