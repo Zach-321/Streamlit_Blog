@@ -21,16 +21,18 @@ data = load_data()
 st.title('Presidents and the Economy')
 
 with st.sidebar:
-    options = st.multiselect('Choose 2 variables to compare', data.columns[1:], default = 'CPI')
+    options = st.multiselect('Choose 2 variables to compare', data.columns[1:])
     input_name = st.text_input('Enter a Name:','Zachary')
     year_input =st.slider('Year', 1880, 2023, value = 2003)
     summary = st.radio('Choose a Summary Statistic', ['mean','median', 'max', 'min'])
 
 tab1, tab2 = st.tabs(['Plots', 'Summaries'])
 with tab1:
-    comp = pairs(data,options)
+
     try:
-        st.pyplot(comp)
+        fig, ax = plt.subplots()
+        pairs(data,options)
+        st.pyplot(fig)
     except:
         st.text('Please select at least 2 variables')
     fig, ax = plt.subplots()
