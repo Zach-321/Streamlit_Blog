@@ -14,6 +14,18 @@ def scatter(df, options):
     fig = px.scatter(df,x=options[0],y=options[1])
     return fig
 
+
+def summarize(df, stat):
+    vars = df.drop('Date', axis=1)
+    if stat == 'mean':
+        return vars.mean()
+    elif stat == 'median':
+        return vars.median()
+    elif stat == 'max':
+        return vars.max()
+    elif stat == 'min':
+        return vars.min()
+
 def top_names_plot(df, year=2000, n=10, width=800, height=600, variable='count'):
     color_map = {"M": "lightblue", "F": "hotpink"}
     year_data = df[df['year'] == year].copy()
