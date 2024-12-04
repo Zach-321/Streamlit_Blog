@@ -30,7 +30,7 @@ tab1, tab2 = st.tabs(['Plots', 'Summaries'])
 with tab1:
     comp = pairs(data,options)
     try:
-        st.plotly_chart(comp)
+        st.pyplot(comp)
     except:
         st.text('Please select at least 2 variables')
     fig, ax = plt.subplots()
