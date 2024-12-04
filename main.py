@@ -28,12 +28,12 @@ with st.sidebar:
 
 tab1, tab2 = st.tabs(['Plots', 'Summaries'])
 with tab1:
+    fig, ax = plt.subplots()
+    pairs(data,options,ax)
     try:
-        fig, ax = plt.subplots()
-        pairs(data,options,ax)
         st.pyplot(fig)
     except:
-        st.text('Please select at least 2 variables')
+        st.text('Please select at least 1 variable')
     fig, ax = plt.subplots()
     correlation(data, ax)
     st.pyplot(fig)
