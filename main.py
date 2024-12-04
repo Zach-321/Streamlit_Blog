@@ -20,10 +20,14 @@ data = load_data()
 st.title('Presidents and the Economy')
 
 with st.sidebar:
-    scatter = st.multiselect('Choose variables to compare', data.columns[1:])
+    options = st.multiselect('Choose variables to compare', data.columns[1:])
     input_name = st.text_input('Enter a Name:','Zachary')
     year_input =st.slider('Year', 1880, 2023, value = 2003)
     n_names = st.radio('Number of Names per Sex', [3,5,10,20])
+
+
+comp = scatter(data,options)
+st.plotly_chart(comp)
     
 
 # tab1, tab2 = st.tabs(['Name', 'Year'])
