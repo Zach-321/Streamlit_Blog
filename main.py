@@ -28,10 +28,9 @@ with st.sidebar:
 
 tab1, tab2 = st.tabs(['Plots', 'Summaries'])
 with tab1:
-
     try:
         fig, ax = plt.subplots()
-        pairs(data,options)
+        pairs(data,options,ax)
         st.pyplot(fig)
     except:
         st.text('Please select at least 2 variables')
