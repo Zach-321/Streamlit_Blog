@@ -27,7 +27,10 @@ with st.sidebar:
 
 
 comp = scatter(data,options)
-st.plotly_chart(comp)
+try:
+    st.plotly_chart(comp)
+except:
+    print('Please select 2 variables')
     
 
 # tab1, tab2 = st.tabs(['Name', 'Year'])
