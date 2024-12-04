@@ -19,11 +19,11 @@ def summarize(df, stat):
     result = df.melt(id_vars=['Date'], var_name='Variable', value_name='Value')
     vars = df.drop('Date', axis=1)
     if stat == 'mean':
-        return vars.mean()[1:]
+        return vars.mean()
     elif stat == 'median':
-        return vars.median()[1:]
+        return vars.median()
     elif stat == 'max':
-        return result.loc[result.groupby('Variable')['Value'].idxmax()].drop([0])
+        return result.loc[result.groupby('Variable')['Value'].idxmax()]
     elif stat == 'min':
         return result.loc[result.groupby('Variable')['Value'].idxmin()]
 
