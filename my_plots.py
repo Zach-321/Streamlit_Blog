@@ -7,9 +7,9 @@ import pandas as pd
 
 
 def scatter(df, options):
-    if len(options)>2:
-        return 'Please only select 2 variables'
-    fig = px.scatter(x=options[0],y=options[1])
+    if len(options)!=2:
+        return 'Please  select 2 variables'
+    fig = px.scatter(df,x=options[0],y=options[1])
     return fig
 
 def top_names_plot(df, year=2000, n=10, width=800, height=600, variable='count'):
