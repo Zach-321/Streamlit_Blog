@@ -30,7 +30,7 @@ comp = scatter(data,options)
 try:
     st.plotly_chart(comp)
 except:
-    print('Please select 2 variables')
+    st.text('Please select 2 variables')
     
 
 # tab1, tab2 = st.tabs(['Name', 'Year'])
