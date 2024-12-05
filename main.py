@@ -34,7 +34,9 @@ with tab1:
 
 with tab2:
     try:
-        fig = sns.pairplot(party(data)[options], hue = 'Political_Party')
+        colors = {'Democrat' : 'blue', 'Republican': 'red'}
+        fig = sns.pairplot(party(data),vars = options, hue = 'Political_Party', palette = colors)
+        #fig = sns.pairplot(party(data)[options], hue = 'Political_Party')
         st.pyplot(fig)
     except:
         st.text('Please select at least 1 variable')
