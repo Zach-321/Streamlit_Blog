@@ -7,9 +7,8 @@ import seaborn as sns
 import numpy as np
 
 def summarize(df, stat):
-    dat = df.drop(['Political_Party'], axis = 1)
     result = dat.melt(id_vars=['Date'], var_name='Variable', value_name='Value')
-    vars = df.drop('Date', axis=1)
+    vars = df.drop(['Date','Political_Party'], axis=1)
     if stat == 'mean':
         return vars.mean()
     elif stat == 'median':
