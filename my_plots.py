@@ -7,7 +7,6 @@ import numpy as np
 def summarize(df, stat):
     result = df.melt(id_vars=['Date'], var_name='Variable', value_name='Value')
     vars = df.drop(['Date','Political_Party'], axis=1)
-    result = result.drop('Political_Party', axis = 1)
     if stat == 'mean':
         return vars.mean()
     elif stat == 'median':
