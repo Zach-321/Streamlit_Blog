@@ -36,8 +36,8 @@ def correlation(df, ax):
     sns.heatmap(corr, mask=matrix, center=0, annot=True,
             fmt='.2f', square=True, cmap=cmap, ax = ax)
 
-def time_series(fred, i):
-    fig = px.line(fred, x = 'Date', y = i, title = 'Unemployment Over Time by President' )
+def time_series(fred, i, ax):
+    fig = px.line(fred, x = 'Date', y = i, title = f'{i} Over Time by President', ax = ax)
     fig.add_shape(
         type="line",
         x0="1939-01-01", x1="1939-01-01",  
@@ -104,8 +104,6 @@ def time_series(fred, i):
         y0=min(fred[i]), y1=max(fred[i].dropna()),  
         line=dict(color="blue", width=2, dash="dash")
     )
-    # Show the plot
-    fig.show()
 
 def top_names_plot(df, year=2000, n=10, width=800, height=600, variable='count'):
     color_map = {"M": "lightblue", "F": "hotpink"}

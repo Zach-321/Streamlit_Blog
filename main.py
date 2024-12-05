@@ -29,7 +29,8 @@ with st.sidebar:
 tab1, tab2, tab3 = st.tabs(['Time Series','Plots', 'Summaries'])
 
 with tab1:
-    fig = time_series(data,time)
+    fig, ax = plt.subplots()
+    time_series(data,time, ax)
     st.pyplot(fig)
 
 with tab2:
