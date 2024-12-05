@@ -123,4 +123,4 @@ def party(fred):
     
     fredp = fred
     fredp['Political_Party'] = fredp['Date'].apply(get_party)
-    return(fredp)
+    return fredp
