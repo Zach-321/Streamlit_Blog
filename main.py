@@ -1,13 +1,7 @@
 import numpy as np
 import pandas as pd
-import zipfile
 import plotly.express as px
 import matplotlib.pyplot as plt
-import requests
-from io import BytesIO
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-from my_plots import *
 import seaborn as sns
 import streamlit as st
 
@@ -18,10 +12,10 @@ def load_data():
 
 data = load_data()
 
-st.title('Economic Data')
+st.title('Presidents and Economic Data')
 
 with st.sidebar:
-    time = st.selectbox('choose 1 Variable for Time Series Analysis', data.columns[1:])
+    time = st.selectbox('Choose 1 Variable for Time Series Analysis', data.columns[1:])
     options = st.multiselect('Choose at Least 1 Variable for Comparison', data.columns[1:])
     summary = st.radio('Choose a Summary Statistic', ['mean','median', 'max', 'min'])
 
@@ -36,7 +30,6 @@ with tab2:
     try:
         colors = {'Democrat' : 'blue', 'Republican': 'red'}
         fig = sns.pairplot(party(data),vars = options, hue = 'Political_Party', palette = colors)
-        #fig = sns.pairplot(party(data)[options], hue = 'Political_Party')
         st.pyplot(fig)
     except:
         st.text('Please select at least 1 variable')
