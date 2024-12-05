@@ -29,7 +29,7 @@ with st.sidebar:
 tab1, tab2 = st.tabs(['Plots', 'Summaries'])
 with tab1:
     try:
-        fig = sns.pairplot(data[options], hue='Date')
+        fig = sns.pairplot(data[options])
         st.pyplot(fig)
     except:
         st.text('Please select at least 1 variable')
