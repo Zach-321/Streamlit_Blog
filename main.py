@@ -12,6 +12,8 @@ def load_data():
     return data
 
 data = load_data()
+data['Real_GDP_per_Capita'] = data['Real_GDP_per_Capita'].bfill()
+data['GDP(billions)'] = data['GDP(billions)'].bfill()
 
 st.title('Presidents and Economic Data')
 
@@ -24,6 +26,7 @@ with st.sidebar:
 tab1, tab2, tab3 = st.tabs(['Time Series','Plots', 'Summaries'])
 
 with tab1:
+    
     fig = time_series(data,time)
     st.plotly_chart(fig)
 
