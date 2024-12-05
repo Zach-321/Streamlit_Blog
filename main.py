@@ -29,9 +29,8 @@ with st.sidebar:
 tab1, tab2, tab3 = st.tabs(['Time Series','Plots', 'Summaries'])
 
 with tab1:
-    fig, ax = plt.subplots()
-    time_series(data,time, ax)
-    st.pyplot(fig)
+    fig = time_series(data,time)
+    st.plotly_chart(fig)
 
 with tab2:
     try:
