@@ -18,16 +18,21 @@ def load_data():
 
 data = load_data()
 
-st.title('Presidents and the Economy')
+st.title('Economic Data')
 
 with st.sidebar:
-    options = st.multiselect('Choose 2 variables to compare', data.columns[1:])
-    # input_name = st.text_input('Enter a Name:','Zachary')
-    # year_input =st.slider('Year', 1880, 2023, value = 2003)
+    time = st.selectbox('choose 1 Variable for Time Series Analysis', data.columns[1:])
+    options = st.multiselect('Choose at Least 1 Variable for Comparison', data.columns[1:])
     summary = st.radio('Choose a Summary Statistic', ['mean','median', 'max', 'min'])
 
-tab1, tab2 = st.tabs(['Plots', 'Summaries'])
+
+tab1, tab2, tab3 = st.tabs(['Time Series','Plots', 'Summaries'])
+
 with tab1:
+    fig = time_series(data,time)
+    st.pyplot(fig)
+
+with tab2:
     try:
         fig = sns.pairplot(data[options])
         st.pyplot(fig)
@@ -37,16 +42,9 @@ with tab1:
     correlation(data, ax)
     st.pyplot(fig)
 
-with tab2:
+with tab3:
     sum = summarize(data,summary)
     st.table(sum)
-
-    # fig2 = top_names_plot(data, year = year_input, n = n_names)
-    # st.plotly_chart(fig2)
-
-    # st.write('Unique Names Table')
-    # output = unique_names_summary(data, year_input)
-    # st.dataframe(output)
 
 with st.expander('Feedback', icon  = '🤔'):
     st.text('How would you rate your experience?')

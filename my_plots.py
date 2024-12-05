@@ -12,7 +12,6 @@ def pairs(df, options):
     if len(options) == 0:
         return None
     fig = sns.pairplot(df[options])
-    #fig = px.scatter(df,x=options[0],y=options[1])
     return fig
 
 
@@ -36,6 +35,77 @@ def correlation(df, ax):
                             n=5, center="light", as_cmap=True)
     sns.heatmap(corr, mask=matrix, center=0, annot=True,
             fmt='.2f', square=True, cmap=cmap, ax = ax)
+
+def time_series(fred, i):
+    fig = px.line(fred, x = 'Date', y = i, title = 'Unemployment Over Time by President' )
+    fig.add_shape(
+        type="line",
+        x0="1939-01-01", x1="1939-01-01",  
+        y0=min(fred[i]), y1=max(fred[i].dropna()),  
+        line=dict(color="blue", width=2, dash="dash") 
+    )
+    fig.add_shape(
+        type="line",
+        x0="1953-01-01", x1="1953-01-01",  
+        y0=min(fred[i]), y1=max(fred[i].dropna()),  
+        line=dict(color="red", width=2, dash="dash")
+    )
+    fig.add_shape(
+        type="line",
+        x0="1961-01-01", x1="1961-01-01",  
+        y0=min(fred[i]), y1=max(fred[i].dropna()),  
+        line=dict(color="blue", width=2, dash="dash")
+    )
+    fig.add_shape(
+        type="line",
+        x0="1969-01-01", x1="1969-01-01",  
+        y0=min(fred[i]), y1=max(fred[i].dropna()),  
+        line=dict(color="red", width=2, dash="dash")
+    )
+    fig.add_shape(
+        type="line",
+        x0="1977-01-01", x1="1977-01-01",  
+        y0=min(fred[i]), y1=max(fred[i].dropna()),  
+        line=dict(color="blue", width=2, dash="dash")
+    )
+    fig.add_shape(
+        type="line",
+        x0="1981-01-01", x1="1981-01-01",  
+        y0=min(fred[i]), y1=max(fred[i].dropna()),  
+        line=dict(color="red", width=2, dash="dash")
+    )
+    fig.add_shape(
+        type="line",
+        x0="1993-01-01", x1="1993-01-01",  
+        y0=min(fred[i]), y1=max(fred[i].dropna()),  
+        line=dict(color="blue", width=2, dash="dash")
+    )
+    fig.add_shape(
+        type="line",
+        x0="2001-01-01", x1="2001-01-01",  
+        y0=min(fred[i]), y1=max(fred[i].dropna()),  
+        line=dict(color="red", width=2, dash="dash")
+    )
+    fig.add_shape(
+        type="line",
+        x0="2009-01-01", x1="2009-01-01",  
+        y0=min(fred[i]), y1=max(fred[i].dropna()),  
+        line=dict(color="blue", width=2, dash="dash")
+    )
+    fig.add_shape(
+        type="line",
+        x0="2017-01-01", x1="2017-01-01",  
+        y0=min(fred[i]), y1=max(fred[i].dropna()),  
+        line=dict(color="red", width=2, dash="dash")
+    )
+    fig.add_shape(
+        type="line",
+        x0="2021-01-01", x1="2021-01-01",  
+        y0=min(fred[i]), y1=max(fred[i].dropna()),  
+        line=dict(color="blue", width=2, dash="dash")
+    )
+    # Show the plot
+    fig.show()
 
 def top_names_plot(df, year=2000, n=10, width=800, height=600, variable='count'):
     color_map = {"M": "lightblue", "F": "hotpink"}
