@@ -3,6 +3,7 @@ import pandas as pd
 import plotly.express as px
 import matplotlib.pyplot as plt
 import seaborn as sns
+from my_plots import *
 import streamlit as st
 
 @st.cache_data
