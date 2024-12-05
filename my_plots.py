@@ -19,7 +19,7 @@ def summarize(df, stat):
         return result.loc[result.groupby('Variable')['Value'].idxmin()]
 
 def correlation(df, ax):
-    edit = df.drop('Date', axis=1)
+    edit = df.drop(['Date','Presidential_Party'], axis=1)
     corr = edit.corr()
     matrix = np.triu(corr)
     cmap = sns.diverging_palette(100, 7, s=75, l=40,
