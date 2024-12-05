@@ -6,15 +6,6 @@ import pandas as pd
 import seaborn as sns
 import numpy as np
 
-
-
-def pairs(df, options):
-    if len(options) == 0:
-        return None
-    fig = sns.pairplot(df[options])
-    return fig
-
-
 def summarize(df, stat):
     result = df.melt(id_vars=['Date'], var_name='Variable', value_name='Value')
     vars = df.drop('Date', axis=1)
@@ -105,3 +96,33 @@ def time_series(fred, i):
         line=dict(color="blue", width=2, dash="dash")
     )
     return fig
+
+
+def party(fred):
+    presidents = [
+    {'start_date': '1939-01-01', 'end_date': '1953-01-19', 'party': 'Democrat'},
+    {'start_date': '1953-01-20', 'end_date': '1961-01-19', 'party': 'Republican'},
+    {'start_date': '1961-01-20', 'end_date': '1969-01-19', 'party': 'Democrat'},
+    {'start_date': '1969-01-20', 'end_date': '1977-01-19', 'party': 'Republican'},
+    {'start_date': '1977-01-20', 'end_date': '1981-01-19', 'party': 'Democrat'},
+    {'start_date': '1981-01-20', 'end_date': '1993-01-19', 'party': 'Republican'},
+    {'start_date': '1993-01-20', 'end_date': '2001-01-19', 'party': 'Democrat'},
+    {'start_date': '2001-01-20', 'end_date': '2009-01-19', 'party': 'Republican'},
+    {'start_date': '2009-01-20', 'end_date': '2017-01-19', 'party': 'Democrat'},
+    {'start_date': '2017-01-20', 'end_date': '2021-01-19', 'party': 'Republican'},
+    {'start_date': '2021-01-20', 'end_date': '2025-01-19', 'party': 'Democrat'}
+    ]
+    presidents_df = pd.DataFrame(presidents)
+    presidents_df['start_date'] = pd.to_datetime(presidents_df['start_date'])
+    presidents_df['end_date'] = pd.to_datetime(presidents_df['end_date'])
+    fred['Date'] = pd.to_datetime(fred['Date'], errors='coerce')
+
+    def get_party(date):
+        for _, row in presidents_df.iterrows():
+            if row['start_date'] <= date <= row['end_date']:
+                return row['party']
+        return None
+    
+    fredp = fred
+    fredp['Political_Party'] = fredp['Date'].apply(get_party)
+    return(fredp)
